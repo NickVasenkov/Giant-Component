@@ -1,0 +1,27 @@
+check cpu usage
+
+TASKS:
+save and load models
+extract policies (for a given state individually)
+analyze policies: graph probabilities as following: x-axis: the size of left choice
+y-axis: the size of right choice. hue: probability of making left choice
+
+TO OBSERVE:
+
+difference between first pair and second pair
+graph size
+neighbors
+difference between the new component and maximum of the two components added
+(will be zero if nodes are in the same component)
+same component or different
+edge matrix
+four component sizes (shall differenciate if vertices are in same component)
+product of component sizes (just the component size or zero, if in the same component)
+
+
+APPROACHES:
+a version of the game allows double edges and edges from a node to itself
+maxp maxh maxl (https://duckduckgo.com/?q=maxp%2Cmaxh%2Cmaxl&atb=v378-1&ia=web)
+
+EMBRACING:
+the reward may be 10000 - steps
