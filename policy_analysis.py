@@ -3,8 +3,13 @@ from ray.rllib.algorithms.ppo import PPOConfig
 from ray.rllib.models.preprocessors import get_preprocessor
 import torch
 import numpy as np
+import pandas as pd
 
 NAME = '2-1000-10'
+
+M = 10
+
+PATH = 'C:/Users/mikej/My Drive/5/Graph Research/Giant Component/models/'
 
 default_config = (
     PPOConfig()
@@ -36,6 +41,16 @@ ppo.restore(path)
 # print(query_policy(ppo, GC(), [45,12], actions=[0,1]))
 
 print(ppo.compute_single_action([45, 12], explore=False))
+
+actions_full = []
+for i in range(M * 2):
+    actions_row = []
+    for j in range(M * 2):
+        actions_row.append(ppo.compute_single_action([i, j], explore=False))
+    actions_full.append(actions_row)
+df = pd.DataFrame(actions_full)
+
+df.to_csv(PATH + NAME + '/actions_df.csv')
 
 
 

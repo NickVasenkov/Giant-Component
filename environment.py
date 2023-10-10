@@ -13,8 +13,9 @@ class GC(gym.Env):
         # IN ORDER TO CHANGE THE SIZE OF THE GIANT COMPONENT,
         # WE NEED TO CHANGE NUMBERS IN self.observation_space
         # AND IN FUNCTION done
-        self.observation_space = gym.spaces.Box(low=2, high=round(self.node_number / 4),
-                                                shape=(2,), dtype=np.int64)
+        self.observation_space = gym.spaces.Box(low=2,
+                                        high=round(self.node_number / 4),
+                                        shape=(2,), dtype=np.int64)
         self.action_space = gym.spaces.Discrete(2)
 
     def reset(self, *, seed=None, options=None):

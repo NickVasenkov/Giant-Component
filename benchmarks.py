@@ -1,4 +1,4 @@
-from environment import GC, GC_4
+from environment import GC_4
 import json
 import numpy as np
 import pandas as pd
