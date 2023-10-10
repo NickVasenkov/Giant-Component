@@ -13,7 +13,7 @@ class GC(gym.Env):
         # IN ORDER TO CHANGE THE SIZE OF THE GIANT COMPONENT,
         # WE NEED TO CHANGE NUMBERS IN self.observation_space
         # AND IN FUNCTION done
-        self.observation_space = gym.spaces.Box(low=2, high=round(self.node_number / 40),
+        self.observation_space = gym.spaces.Box(low=2, high=round(self.node_number / 4),
                                                 shape=(2,), dtype=np.int64)
         self.action_space = gym.spaces.Discrete(2)
 
@@ -32,7 +32,7 @@ class GC(gym.Env):
         return self.total_reward
 
     def done(self):
-        return self.biggest_component >= self.node_number / 100
+        return self.biggest_component >= self.node_number / 10
 
     def step(self, action):
         if action in [0, 1]:
@@ -60,7 +60,7 @@ class GC_4(gym.Env):
         # CHANGE THE SIZE OF THE GIANT COMPONENT
         self.giant_size = 100
         self.observation_space = gym.spaces.Box(low=0,
-                                                high=self.giant_size,
+                                                high=self.giant_size * 2,
                                                 shape=(4,), dtype=np.int64)
         self.action_space = gym.spaces.Discrete(2)
 
@@ -85,7 +85,8 @@ class GC_4(gym.Env):
         if action in [0, 1]:
             self.G.add_edge(self.nodes_to_choose[action * 2],
                             self.nodes_to_choose[action * 2 + 1], None)
-            new_component = self.sizes[action * 2] + self.sizes[action * 2 + 1]
+            new_component = len(rx.node_connected_component(self.G,
+                            self.nodes_to_choose[action * 2]))
             self.biggest_component = max(self.biggest_component,
                                          new_component)
         else:
@@ -98,7 +99,7 @@ class GC_4(gym.Env):
 
 
 #
-# env = GC()
+# env = GC_4()
 #
 # print(env.reset())
 # done = False
