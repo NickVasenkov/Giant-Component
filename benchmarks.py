@@ -5,7 +5,7 @@ import pandas as pd
 
 # CHOOSE NAMES TO TEST (the number of nodes and size of the giant component
 # have to be changed in the environment.py)
-NAMES = ['2-1000-10', '4-1000-10']
+NAMES = ['2-1000-100', '4-1000-100']
 
 PATH = 'C:/Users/mikej/My Drive/5/Graph Research/Giant Component/models/'
 
